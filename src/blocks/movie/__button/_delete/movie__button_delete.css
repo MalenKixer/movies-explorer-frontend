@@ -1,0 +1,7 @@
+.movie__button.movie__button_delete{
+    background-image: url(../../../../images/close-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px 10px;
+    font-size: 0;
+}

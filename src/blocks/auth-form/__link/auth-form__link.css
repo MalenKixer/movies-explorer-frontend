@@ -1,0 +1,9 @@
+.auth-form__link{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #4285F4;
+    text-decoration: none;
+    margin-left: 6px;
+}

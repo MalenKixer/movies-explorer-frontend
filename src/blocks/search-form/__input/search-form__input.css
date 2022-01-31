@@ -1,0 +1,24 @@
+.search-form__input{
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex: 1 1;
+    outline: none;
+    color: #8B8B8B;
+    background-color: #202020;
+}
+@media screen and (max-width: 320px) {
+    .search-form__input{
+        text-align: left;
+        font-size: 18px;
+        line-height: 22px;
+    }
+}

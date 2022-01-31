@@ -1,0 +1,27 @@
+.header__link-auth{
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(255, 255, 255, 1);
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+    text-decoration: none;
+    transition: color .3s ease-out;
+    cursor: pointer;
+}
+.header__link-auth:hover{
+    color: rgba(255, 255, 255, .6);
+}
+.header__link-auth:last-of-type{
+    margin-right: 0;
+}
+@media screen and (max-width: 320px) {
+    .header__link-auth{
+        font-size: 10px;
+        line-height: 16px;  
+        margin-right: 14px;      
+    }
+}

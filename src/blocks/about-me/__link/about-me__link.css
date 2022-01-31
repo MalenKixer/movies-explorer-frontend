@@ -1,0 +1,21 @@
+.about-me__link{
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    margin-right: 20px;  
+    text-decoration: none;
+}
+.about-me__link:last-of-type{
+    margin-right: 0;
+}
+@media screen and (max-width: 320px) {
+    .about-me__link{
+        margin-right: 26px;  
+    }
+}

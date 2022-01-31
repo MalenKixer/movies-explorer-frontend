@@ -1,0 +1,9 @@
+.form__input{
+   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+   font-style: normal;
+   font-weight: 500;
+   border: 0;
+   outline: 0;
+   padding: 0;
+   margin: 0;
+}

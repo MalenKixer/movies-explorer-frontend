@@ -1,0 +1,17 @@
+.about-project__period-subtitle{
+    width: 100%;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #8B8B8B;
+    margin-top: 14px;
+}
+@media screen and (max-width: 320px) {
+    .about-project__period-subtitle{
+        font-size: 11px;
+        line-height: 13px;
+    }
+}

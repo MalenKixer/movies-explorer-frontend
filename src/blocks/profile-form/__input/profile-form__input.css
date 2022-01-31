@@ -1,0 +1,9 @@
+.profile-form__input{
+    font-size: 11px;
+    line-height: 13px;
+    text-align: right;
+    color: #FFFFFF;
+    outline: none;
+    background-color:#202020;
+    flex-grow: 1;
+}

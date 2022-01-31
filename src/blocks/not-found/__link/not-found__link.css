@@ -1,0 +1,25 @@
+.not-found__link{
+   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 14px;
+   line-height: 17px;
+   text-align: center;
+   text-decoration: none;
+   padding: 0;
+   margin: 0;
+   background: #202020;
+   margin-top: 184px;
+   color: #4285F4;
+   opacity: 1;
+   transition: opacity .3s ease-out;
+   cursor: pointer;
+}
+.not-found__link:hover{
+   opacity: .6;
+}
+@media screen and (max-width: 320px){
+   .not-found__link{
+      margin-top: 284px;
+   }
+}

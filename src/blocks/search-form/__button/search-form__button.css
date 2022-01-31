@@ -1,0 +1,10 @@
+.search-form__button{
+    border: 0;
+    background-color: #4285F4;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity .3s ease-out;
+}
+.search-form__button:hover{
+   opacity: .6;
+}

@@ -1,0 +1,19 @@
+.about-project__back-title{
+    width: 100%;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #000000;
+    background-color: #3DDC84;
+    margin: 0;
+    padding: 9px 0;
+}
+@media screen and (max-width: 320px) {
+    .about-project__back-title{
+        font-size: 11px;
+        line-height: 13px;
+    }
+}

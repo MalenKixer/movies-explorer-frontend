@@ -1,0 +1,13 @@
+.form__button{
+   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+   font-style: normal;
+   text-align: center;
+   color: #FFFFFF;
+   border: 0;
+   opacity: 1;
+   transition: opacity .3s ease-out;
+   cursor: pointer;
+}
+.form__button:hover{
+   opacity: .6;
+}

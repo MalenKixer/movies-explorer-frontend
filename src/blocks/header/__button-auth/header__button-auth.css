@@ -1,0 +1,22 @@
+.header__button-auth{
+    width: 76px;
+    height: 32px;
+    background-color: rgba(61, 220, 132, 1);
+    border-radius: 3px;    
+    color: rgba(0, 0, 0, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: background-color .3s ease-out;
+    border: 0;
+    cursor: pointer;
+}
+.header__button-auth:hover{
+    background-color: rgba(61, 220, 132, .6);
+ }
+ @media screen and (max-width: 320px) {
+    .header__button-auth{
+        font-size: 10px;
+    }
+}

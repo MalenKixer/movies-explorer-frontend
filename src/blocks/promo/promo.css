@@ -1,0 +1,25 @@
+.promo{
+    width: 100%;
+    min-height: 528px;
+    background-color:#073042;
+    background-image: url(../../images/practikum-image.svg);
+    background-size: 320px 320px;
+    background-position: top 156px right 50%;
+    background-repeat: no-repeat;
+    padding: 0 70px;
+}
+@media screen and (max-width: 768px) {
+    .promo{
+        min-height: 784px;
+        padding: 0 30px;
+        background-position: top 298px right 50%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .promo{
+        min-height: 570px;
+        padding: 0 10px;
+        background-position: top 216px right 50%;
+    }
+}

@@ -1,0 +1,13 @@
+.footer__title {
+    width: 100%;
+    padding-bottom: 20px;
+    margin: 0;
+    text-align: center;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    border-bottom: 1px solid #424242;
+    color: #8B8B8B;
+}

@@ -1,0 +1,22 @@
+.about-project__name{
+    width: 100%;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+    padding-bottom: 23px;  
+    border-bottom: 1px solid #DADADA;
+    color: #FFFFFF;
+}
+@media screen and (max-width: 320px) {
+    .about-project__name{
+        padding-bottom: 28px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .about-project__name:nth-child(even){
+        border-bottom: 1px solid #000000;
+    }
+}

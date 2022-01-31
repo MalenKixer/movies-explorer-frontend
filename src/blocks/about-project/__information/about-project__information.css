@@ -1,0 +1,21 @@
+.about-project__information{
+    width: 50%;
+    margin-right: 40px;
+}
+.about-project__information:last-of-type{
+    margin-right: 0;
+}
+@media screen and (max-width: 768px) {
+    .about-project__information{
+        margin-right: 30px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .about-project__information{
+        width: 100%;
+        margin-bottom: 56px;
+    }
+    .about-project__information:last-of-type{
+        margin-bottom: 0;
+    }
+}

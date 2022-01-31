@@ -1,0 +1,8 @@
+.portfolio__link-icon{
+    width: 18px;
+    height: 28px;
+    background-image: url(../../../images/arrov-icon.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    align-self: center;
+}

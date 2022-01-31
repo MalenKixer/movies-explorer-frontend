@@ -1,0 +1,15 @@
+.pages{
+    max-width: 100%;
+    min-height: 100vh;
+    background-color: rgba(32, 32, 32, 1);
+    box-sizing: border-box;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+}

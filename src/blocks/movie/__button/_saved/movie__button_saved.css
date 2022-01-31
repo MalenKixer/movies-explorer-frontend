@@ -1,0 +1,9 @@
+.movie__button.movie__button_saved{
+    background: #EE3465;
+    background-image: url(../../../../images/saved-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 8px 5px;
+    font-size: 0;
+    line-height: 0;
+}

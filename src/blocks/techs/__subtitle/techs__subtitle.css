@@ -1,0 +1,25 @@
+.techs__subtitle{
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.04em;
+    margin: 0 0 100px;
+    color: #FFFFFF;
+}
+@media screen and (max-width: 768px) {
+    .techs__subtitle{
+        margin: 0 0 83px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .techs__subtitle{
+        margin: 0 0 50px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+}

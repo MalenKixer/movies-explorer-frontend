@@ -1,0 +1,14 @@
+.footer__subtitle{
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: left;
+    color: #FFFFFF;
+}
+@media screen and (max-width: 320px) {
+    .footer__subtitle{
+        color: #8B8B8B;
+    }
+}
