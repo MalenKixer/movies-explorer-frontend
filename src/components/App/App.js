@@ -6,7 +6,6 @@ import CurrentUserContext from '../../context/CurrentUserContext';
 import '../../blocks/pages/pages.css'
 import '../../blocks/page/page.css'
 import '../../vendor/normalize.css'
-import '../../pages/index.css'
 
 import Navigation from '../Navigation/Navigation';
 import Login from '../Login/Login';
