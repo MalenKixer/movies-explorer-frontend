@@ -11,6 +11,7 @@
    background: #202020;
    margin-top: 184px;
    color: #4285F4;
+   border: 0;
    opacity: 1;
    transition: opacity .3s ease-out;
    cursor: pointer;
