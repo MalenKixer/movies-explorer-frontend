@@ -12,7 +12,7 @@ const Movies = React.memo((props) =>{
             <HeaderMovies openNavigation={props.openNavigation}></HeaderMovies>
             <SearchForm></SearchForm>
             <MovieCardList buttonName="Сохранить"></MovieCardList>
-            <More></More>
+            <More addButton={true}></More>
             <Footer></Footer>
         </main>
     );

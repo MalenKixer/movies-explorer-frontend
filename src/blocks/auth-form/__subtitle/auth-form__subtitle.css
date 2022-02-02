@@ -1,9 +1,11 @@
 .auth-form__subtitle{
+    width: 100%;
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
     color: #8B8B8B;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 16px;
 }

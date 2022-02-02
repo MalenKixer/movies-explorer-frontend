@@ -1,2 +1,3 @@
 @import url(../../blocks/more/more.css);
 @import url(../../blocks/more/__button/more__button.css);
+@import url(../../blocks/more/__button/_disabled/more__button_disabled.css);

@@ -2,7 +2,7 @@
     width: 100%;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 360px));
+    grid-template-columns: repeat(auto-fit, minmax(0, 360px));
     justify-content: center;
     gap: 28px 32px;
     padding: 70px 0 10px;
@@ -10,12 +10,14 @@
 @media screen and (max-width: 768px) {
     .movies{
         padding: 70px 0 30px;  
+        grid-template-columns: repeat(auto-fit, minmax(0, 342px));
         gap: 24px 35px;
     }
 }
 @media screen and (max-width: 320px) {
     .movies{
         padding: 40px 0 30px;  
+        grid-template-columns: repeat(auto-fit, minmax(0, 300px));
         gap: 16px;
     }
 }

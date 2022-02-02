@@ -16,7 +16,7 @@ const AboutMe = React.memo((props) =>{
                         <NavLink className="about-me__link" activeClassName="about-me__link_active" to='//github.com/MalenKixer'>Github</NavLink>
                     </div>
                 </div>
-                <img className="about-me__avatar" src="https://www.studylab.ru/upload/Articles/image/big/3b41fc9585d02df26c324c1c5c6d6725.jpg" onload="" alt=""/>
+                <img className="about-me__avatar" src="https://www.studylab.ru/upload/Articles/image/big/3b41fc9585d02df26c324c1c5c6d6725.jpg" onLoad="" alt={`${props.name}-avatar`}/>
             </div>
             <Portfolio></Portfolio>
         </section>  

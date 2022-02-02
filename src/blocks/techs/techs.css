@@ -9,12 +9,12 @@
 }
 @media screen and (max-width: 768px) {
     .techs{
-        padding: 0 50px;
+        padding: 0 30px;
     }
 }
 @media screen and (max-width: 320px) {
     .techs{
-        background-color: none;
-        padding: 0 14px;
+        background-color: #202020;
+        padding: 0 10px;
     }
 }

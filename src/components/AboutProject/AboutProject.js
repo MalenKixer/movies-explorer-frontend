@@ -16,13 +16,13 @@ const AboutProject = React.memo((props) => {
                 </div>
             </div>
             <div className="about-project__period">
-                    <div className="about-project__period-back">
-                        <h1 className="about-project__back-title">1 Неделя</h1>
-                        <p className="about-project__period-subtitle">Back-end</p>
+                    <div className="about-project__period-description">
+                        <h3 className="about-project__period-title about-project__title_back about-project__period_back">1 неделя</h3>
+                        <h3 className="about-project__period-title about-project__title_front about-project__period_front">4 недели</h3>
                     </div>
-                    <div className="about-project__period-front">
-                        <h1 className="about-project__front-title">4 Недели</h1>
-                        <p className="about-project__period-subtitle">Front-end</p>
+                    <div className="about-project__period-description">
+                        <p className="about-project__period-subtitle about-project__period_back">Back-end</p>
+                        <p className="about-project__period-subtitle about-project__period_front">Front-end</p>
                     </div>
             </div>
         </section>

@@ -1,6 +1,6 @@
 .content__element{
     padding-top: 110px;
-    padding-bottom: 110px; 
+    padding-bottom: 110px;
 }
 .content__element:nth-child(even){
     padding-top: 100px;

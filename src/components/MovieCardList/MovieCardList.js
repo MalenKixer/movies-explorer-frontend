@@ -6,6 +6,12 @@ const MovieCardList = React.memo((props) =>{
     return (
         <ul className="movies">
             <MovieCard buttonName={props.buttonName} cardName={props.cardName}></MovieCard>
+            <MovieCard buttonName={props.buttonName} cardName={props.cardName}></MovieCard>
+            <MovieCard buttonName={props.buttonName} cardName={props.cardName}></MovieCard>
+            <MovieCard buttonName={props.buttonName} cardName={props.cardName}></MovieCard>
+            <MovieCard buttonName={props.buttonName} cardName={props.cardName}></MovieCard>
+            <MovieCard buttonName={props.buttonName} cardName={props.cardName}></MovieCard>
+            <MovieCard buttonName={props.buttonName} cardName={props.cardName}></MovieCard>
         </ul>
     )
 })

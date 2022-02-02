@@ -1,0 +1,13 @@
+.about-project__period_back{
+    width: 228px;
+}
+@media screen and (max-width: 768px) {
+    .about-project__period_back{
+        width: 140px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .about-project__period_back{
+        width: 25%;
+    }
+}
