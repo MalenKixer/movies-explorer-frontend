@@ -1,0 +1,5 @@
+.form__input-error{
+    display: none;
+    width: 100%;
+    color: #EE3465;
+}

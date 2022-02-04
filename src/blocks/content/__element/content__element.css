@@ -2,7 +2,7 @@
     padding-top: 110px;
     padding-bottom: 110px;
 }
-.content__element:nth-child(even){
+.content__element:nth-child(odd){
     padding-top: 100px;
     padding-bottom: 100px;
 }
@@ -11,9 +11,17 @@
         padding-top: 90px;
         padding-bottom: 90px;
     }
+    .content__element:nth-child(odd){
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
 }
 @media screen and (max-width: 320px) {
     .content__element{
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+    .content__element:nth-child(odd){
         padding-top: 70px;
         padding-bottom: 70px;
     }

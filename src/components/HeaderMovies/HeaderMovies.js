@@ -1,6 +1,7 @@
 import Header from '../Header/Header';
 import { NavLink } from 'react-router-dom';
 import React from 'react';
+import Navigation from '../Navigation/Navigation';
 
 const HeaderMovies = React.memo((props) =>{
     return (
@@ -15,6 +16,7 @@ const HeaderMovies = React.memo((props) =>{
                 </div>
             </nav>
             <button className="header__bar" type="button" onClick={props.openNavigation}></button> 
+            <Navigation isOpen={props.isBarOpen} closePopup={props.closePopup}></Navigation>
         </Header>
     );
 })
