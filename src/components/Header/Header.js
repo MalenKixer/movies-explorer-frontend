@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 const Header = React.memo((props) =>{
     return(
-        <header className="header">
-            <NavLink className="logo" activeClassName='' to="/"></NavLink>  
+        <header className={`header ${props.headerClassName}`}>
+            <NavLink className="logo" activeclassname='' to="/"></NavLink>  
             {props.children}
         </header>
     )
