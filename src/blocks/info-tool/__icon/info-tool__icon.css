@@ -1,0 +1,15 @@
+.info-tool__icon{
+    width: 120px;
+    height: 120px;
+    margin: 0 0 32px;
+    background-size: cover;
+    background-position: center;
+    border: 0;
+    outline: 0;
+}
+@media screen and (max-width: 320px) {
+    .info-tool__icon{
+        margin: 0 0 40px;
+    }   
+ }
+ 

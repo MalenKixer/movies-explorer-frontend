@@ -10,7 +10,13 @@
     align-items: center;
     text-decoration: none;
     color: #FFFFFF;
-}
+    opacity: 1;
+    transition: opacity .3s ease-out;
+    cursor: pointer;
+ }
+ .footer__link:hover{
+    opacity: .6;
+ }
 
 .footer__link:last-of-type{
     margin-right: 0;

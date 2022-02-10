@@ -1,7 +1,5 @@
 import './Form.css';
 import React from 'react';
-// import FormValidator from '../FormValidator/FormValidator';
-// import { validationFormConfig } from '../../utils/const';
 
 const Form = React.memo((props) =>{
    const formClassName = `${props.name}__form`;
@@ -11,14 +9,14 @@ const Form = React.memo((props) =>{
    function handleSubmit(evt){
       evt.preventDefault();
       props.onSubmit();
-      this.reset();
    }
    return(
-      <form className={`form ${formClassName}`} name='form' onSubmit={handleSubmit}>
+      <form className={`form ${formClassName}`} name={props.name} onSubmit={handleSubmit} noValidate>
          <h2 className={`form__title ${titleClassName}`}>{props.title}</h2>
-         <fieldset className={`form__set ${fieldsetClassName}`}>{props.children}</fieldset>
-         <button className={`form__button ${buttonClassName}`} type="submit" name="submit" >{props.button}</button>
-         {/* <FormValidator validationConfig={validationFormConfig} form={document.forms.form}></FormValidator> */}
+         <fieldset className={`form__set ${fieldsetClassName}`}>
+            {props.children}
+         </fieldset>
+         <button className={`form__button ${buttonClassName} ${!props.isValid && 'form__button_disabled'}`} type="submit" name="submit" >{props.button}</button>
       </form>
     )
 })

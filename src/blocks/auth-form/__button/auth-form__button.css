@@ -1,5 +1,5 @@
 .auth-form__button{
-    width: 396px;
+    width: 100%;
     font-size: 14px;
     line-height: 17px;
     font-weight: 500;
@@ -7,14 +7,4 @@
     padding: 14px 0 15px;
     background-color: #4285F4;
     border-radius: 3px;
-}
-@media screen and (max-width: 396px) {
-    .auth-form__button{
-       width: 260px;
-    }
-}
-@media screen and (max-width: 260px) {
-    .auth-form__button{
-       width: 100%;
-    }
 }

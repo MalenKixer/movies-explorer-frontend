@@ -3,6 +3,18 @@
     line-height: 13px;
     text-align: right;
     color: #FFFFFF;
-    outline: none;
+    outline: 0;
     background-color:#202020;
+}
+.profile-form__input:focus{
+    outline: 0;
+}
+.profile-form__input:invalid{
+    outline: 0;
+}
+.profile-form__input:valid{
+    outline: 0;
+}
+.profile-form__input::placeholder{
+    
 }

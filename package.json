@@ -15,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "npm run build && scp -r ./build/* malen_kixer@84.201.134.134:/home/malen_kixer/front",
+    "deploy": "npm run build && scp -r ./build/* malen_kixer@84.201.128.99:/home/malen_kixer/front",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

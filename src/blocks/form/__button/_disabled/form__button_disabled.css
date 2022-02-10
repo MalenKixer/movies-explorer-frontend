@@ -1,5 +1,5 @@
 .form__button_disabled{
-    opacity: .5;
+    opacity: .2;
     pointer-events: none;
     -webkit-user-select: none;
     -moz-user-select: none;

@@ -11,7 +11,7 @@ const Movies = React.memo((props) =>{
         <main className="content">
             <HeaderMovies openNavigation={props.openNavigation} isBarOpen={props.isBarOpen} closePopup={props.closePopup}></HeaderMovies>
             <SearchForm></SearchForm>
-            <MovieCardList buttonName="Сохранить"></MovieCardList>
+            <MovieCardList buttonName="Сохранить" movies={props.movies}></MovieCardList>
             <More addButton={true}></More>
             <Footer></Footer>
         </main>

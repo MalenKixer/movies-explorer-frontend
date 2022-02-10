@@ -1,0 +1,18 @@
+.info-tool__subtitle{
+    max-width: 358px;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+}
+@media screen and (max-width: 320px) {
+    .info-tool__subtitle{
+        max-width: 244px;
+        font-size: 20px;
+        line-height: 24px;
+    }   
+ }
+ 

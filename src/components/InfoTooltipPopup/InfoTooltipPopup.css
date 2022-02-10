@@ -1,0 +1,5 @@
+@import url(../../blocks/info-tool/info-tool.css);
+@import url(../../blocks/info-tool/__subtitle/info-tool__subtitle.css);
+@import url(../../blocks/info-tool/__icon/info-tool__icon.css);
+@import url(../../blocks/info-tool/__icon/_fail/info-tool__icon_fail.css);
+@import url(../../blocks/info-tool/__icon/_succes/info-tool__icon_succes.css);
