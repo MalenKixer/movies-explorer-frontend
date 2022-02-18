@@ -1,0 +1,13 @@
+.navigation{
+    width: 520px;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    align-self: flex-end;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background-color: #202020;
+    padding: 160px 0 90px;
+    z-index: 1;
+}

@@ -1,14 +1,16 @@
 export const BaseUrl = 'https://api.domainame.movies.nomoredomains.rocks';
-
 const requestApi = (endPoint, params) => {
     return fetch(`${BaseUrl}${endPoint}`, params)
     .then((res) => {
-        if (res.ok) {
         return res.json();
+    })
+    .then((res) => {
+        if(res.name !== 'error'){
+            return res;
         } else {
             return Promise.reject(new Error(res.message));
         }
-      })
+    })
 }
 // Зарегистрировать пользователя, если он вошел впервый раз, вернуть id и email
 export const register = (name, email, password) =>{

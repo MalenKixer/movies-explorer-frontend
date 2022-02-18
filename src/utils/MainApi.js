@@ -8,12 +8,15 @@ export class Api{
     _sendRequest(path, parameters){
         return fetch(`${this._baseUrl}${path}`, parameters)
         .then((res) => {
-            if (res.ok) {
             return res.json();
+        })
+        .then((res) => {
+            if(res.name !== 'error'){
+                return res;
             } else {
-                return Promise.reject(new Error(res.status));
+                return Promise.reject(new Error(res.message));
             }
-          })
+        })
     } 
     getUserInfo(){
         return this._sendRequest(`/users/me/`, {
@@ -58,7 +61,7 @@ export class Api{
             credentials: 'include',
         })
     }
-    savedMovie(country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId){
+    savedMovie({country, director, duration, year, description, image, nameRU, nameEN, trailerLink, id}){
         return this._sendRequest(`/movies/`,{
             method: 'POST',
             headers: this._headers,
@@ -70,11 +73,10 @@ export class Api{
                 year,
                 description,
                 image,
-                trailer,
                 nameRU,
                 nameEN,
-                thumbnail,
-                movieId,
+                trailerLink,
+                id,
               })
         })
     }

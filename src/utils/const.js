@@ -5,4 +5,5 @@ const validationFormConfig = {
     inputErrorClass: 'form__input_type-error',
     errorClass: 'form__input-error_active',
  };
- export{ validationFormConfig }
+
+ export { validationFormConfig };

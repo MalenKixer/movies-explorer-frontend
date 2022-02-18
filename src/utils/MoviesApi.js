@@ -8,8 +8,15 @@ export class Api{
     _sendRequest(path, parameters){
         return fetch(`${this._baseUrl}${path}`, parameters)
         .then((res) => {
-            return res.json();
+                return res.json();
           })
+        .then((res) => {
+            if(res.name !== 'error'){
+                return res;
+            } else {
+                return Promise.reject(new Error(res.message));
+            }
+        })
     } 
     getMovies(){
         return this._sendRequest(`/`, {

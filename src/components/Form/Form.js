@@ -1,22 +1,35 @@
 import './Form.css';
 import React from 'react';
+import FormValidator from '../FormValidator/FormValidator';
+import { validationFormConfig } from '../../utils/const'
 
 const Form = React.memo((props) =>{
+   const[errorMessage, setErrorMessage] = React.useState('');
    const formClassName = `${props.name}__form`;
    const fieldsetClassName = `${props.name}__set`;
    const titleClassName = `${props.name}__title`;
    const buttonClassName = `${props.name}__button`;
-   function handleSubmit(evt){
-      evt.preventDefault();
+   const formValidation = new FormValidator(validationFormConfig);
+   React.useEffect(() => {
+      formValidation.enableValidation();
+   }, [])
+   function handleSubmit(){
       props.onSubmit();
    }
-   return(
+   React.useEffect(() => {
+      setErrorMessage(props.errorMessage);
+   }, [props.errorMessage])
+   React.useEffect(() => {
+      setErrorMessage('');
+   }, [])
+    return(
       <form className={`form ${formClassName}`} name={props.name} onSubmit={handleSubmit} noValidate>
          <h2 className={`form__title ${titleClassName}`}>{props.title}</h2>
          <fieldset className={`form__set ${fieldsetClassName}`}>
             {props.children}
          </fieldset>
-         <button className={`form__button ${buttonClassName} ${!props.isValid && 'form__button_disabled'}`} type="submit" name="submit" >{props.button}</button>
+         <span className={`form__input-error form__submit-error ${errorMessage !== '' && 'form__input-error_active'}`}>{errorMessage}</span>
+         <button className={`form__button ${buttonClassName}`} type="submit" name="submit" >{props.button}</button>
       </form>
     )
 })
