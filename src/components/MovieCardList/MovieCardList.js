@@ -13,7 +13,7 @@ const MovieCardList = React.memo((props) =>{
     const [searchedMovies, setSearchedMovies] = React.useState([]);
     const [movies, setMovies] = React.useState([]);
     const [moviesMaxLength, setMoviesMaxLength] = React.useState(0);
-    const [renderingMovies, setRenderMovies] = React.useState([]);
+    const [renderingMovies, setRenderMovies] = React.useState([])
     const handleSearchMovies = useCallback(() => {
       let searchWord = props.searchWordMovies;
       if(searchWord !== ''){
