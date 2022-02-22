@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const AuthForm = React.memo((props) =>{
     return (
     <section className="auth-form">
-        <div className="logo"></div>
+        <NavLink className="logo" to='/'></NavLink>
         <Form name="auth-form" title={props.titleName} button={props.buttonName} onSubmit={props.onSubmit} errorMessage={props.errorMessage}>
             {props.children}
         </Form>
