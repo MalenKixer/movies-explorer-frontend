@@ -10,11 +10,11 @@ export class Api{
         .then((res) => {
                 return res.json();
           })
-        .then((res) => {
-            if(res.name !== 'error'){
-                return res;
-            } else {
+          .then((res) => {
+            if(res.name === 'error' || res.error !== undefined) {
                 return Promise.reject(new Error(res.message));
+            } else {
+                return res;
             }
         })
     } 

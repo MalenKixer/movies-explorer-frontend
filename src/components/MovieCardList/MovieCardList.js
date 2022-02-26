@@ -1,66 +1,102 @@
 import './MovieCardList.css';
 import React, { useCallback } from "react";
 import MovieCard from '../MovieCard/MovieCard';
-import HandleMoviesOnResizeScreen from '../handleMoviesOnResizeScreen/handleMoviesOnResizeScreen';
+
+import { ShortMoviesDuration, LengthMoviesForMaxWidth, LengthMoviesForMiddleWidth, 
+  LengthMoviesForMinWidth, QuantityOfAddMoviesForMaxWidth, QuantityOfAddMoviesForMiddleWidth, QuantityOfAddMoviesForMinWidth } from '../../utils/const';
 
 const MovieCardList = React.memo((props) =>{
-    const filterShortMovies = props.filterShortMovies;
-    const moviesAll = props.movies;
-    const [searchedMovies, setSearchedMovies] = React.useState([]);
-    const [movies, setMovies] = React.useState();
-    const [renderingMovies, setRenderMovies] = React.useState([]);
-
-    const handleSearchMovies = useCallback(() => {
-      let searchWord = props.searchWordMovies;
-      if(searchWord !== ''){
-        const filterMovies = moviesAll.filter(movie => movie.nameRU.includes(searchWord));
-        setSearchedMovies(filterMovies);
-        setMovies(filterMovies);
-        localStorage.setItem('movies', JSON.stringify(filterMovies));
+    const handleStopMoreMovies = props.handleStopMoreMovies;
+    const handleAddButtonMore = props.handleAddButtonMore;
+    const handleDeleteButtonMore = props.handleDeleteButtonMore;
+    const addMoreMovies = props.addMoreMovies;
+    const [quantityOfAddMovies, setQuantityOfAddMovies] = React.useState(0);
+    const [moviesMaxLength, setMoviesMaxLength] = React.useState(0);
+    const [renderingMovies, setRenderMovies] = React.useState([])
+    const [filterShortMovies, setFilterShortMovies] = React.useState(false);
+    const [movies, setMovies] = React.useState([]);
+    const [filterMovies, setFilterMovies] = React.useState([]);
+    const pushMoreMovies = useCallback((movies, renderingMovies) => {
+      renderingMovies.push(movies.slice(moviesMaxLength, moviesMaxLength + quantityOfAddMovies));
+      setMoviesMaxLength(moviesMaxLength + quantityOfAddMovies);
+      handleStopMoreMovies();
+      return renderingMovies;
+  }, [moviesMaxLength, handleStopMoreMovies, quantityOfAddMovies])
+    const handleLimitationMovies = useCallback((movies) => {
+      if(movies.length > moviesMaxLength){
+        handleAddButtonMore()
+        const renderingMovies = movies.slice(0, moviesMaxLength);
+        if(addMoreMovies){
+          return pushMoreMovies(movies, renderingMovies);
+        } else {
+          return renderingMovies;
+        }
       }
-      if(searchWord === '' && props.moviesName === 'saved-movies'){
-        setSearchedMovies(moviesAll);
-        setMovies(moviesAll)
+      if(movies.length <= moviesMaxLength || !movies){
+        handleDeleteButtonMore();
+        return movies;
       }
-    }, [moviesAll, props.searchWordMovies, props.moviesName])
-    const handleFiterMovies = useCallback(() => {
-      if (filterShortMovies){
-        setMovies(searchedMovies.filter(movie => movie.duration <= 40))
+    }, [moviesMaxLength, pushMoreMovies, handleAddButtonMore, addMoreMovies, handleDeleteButtonMore])
+    const handleMoviesOnResizeScreen = useCallback(() => {
+      if(window.innerWidth >= 768){
+        if(moviesMaxLength < LengthMoviesForMaxWidth){
+          setMoviesMaxLength(LengthMoviesForMaxWidth);
+          setQuantityOfAddMovies(QuantityOfAddMoviesForMaxWidth);
+        }
       }
-      if(!filterShortMovies){
-        setMovies(searchedMovies);
+      if(window.innerWidth < 768 && window.innerWidth > 480){
+        if(moviesMaxLength < LengthMoviesForMiddleWidth){
+          setMoviesMaxLength(LengthMoviesForMiddleWidth);
+          setQuantityOfAddMovies(QuantityOfAddMoviesForMiddleWidth);
+        }
       }
-    }, [filterShortMovies, searchedMovies])
-    React.useEffect(() => {
-      window.addEventListener('resize', HandleMoviesOnResizeScreen);
-      HandleMoviesOnResizeScreen();
-      return () => {
-          window.removeEventListener('resize', HandleMoviesOnResizeScreen);
+      if(window.innerWidth <= 480){
+        if(moviesMaxLength < LengthMoviesForMinWidth){
+          setMoviesMaxLength(LengthMoviesForMinWidth);
+          setQuantityOfAddMovies(QuantityOfAddMoviesForMinWidth);
+        }
       }
     }, [])
     React.useEffect(() => {
-      if(props.moviesName)
-      props.setSearchWord('');
-    }, [props.moviesName])
+      if (filterShortMovies){
+        setFilterMovies(props.movies.filter(movie => movie.duration <= ShortMoviesDuration));
+      } else {
+        setFilterMovies(props.movies);
+      }
+    }, [filterShortMovies, props.movies])
     React.useEffect(() => {
-      setRenderMovies(<HandleMoviesOnResizeScreen handleStopMoreMovies={props.handleStopMoreMovies} handleAddButtonMore={props.handleAddButtonMore} 
-        handleDeleteButtonMore={props.handleDeleteButtonMore} addMoreMovies={props.addMoreMovies} movies={props.movies}></HandleMoviesOnResizeScreen>)
-      console.log(<HandleMoviesOnResizeScreen handleStopMoreMovies={props.handleStopMoreMovies} handleAddButtonMore={props.handleAddButtonMore} 
-        handleDeleteButtonMore={props.handleDeleteButtonMore} addMoreMovies={props.addMoreMovies} movies={props.movies}></HandleMoviesOnResizeScreen>)
-    }, [props.movies, props.addMoreMovies, props.handleAddButtonMore, props.handleDeleteButtonMore, props.handleStopMoreMovies])
+      setMovies(filterMovies);
+    }, [filterMovies])
     React.useEffect(() => {
-      handleFiterMovies()
-    }, [handleFiterMovies]);
+      setFilterShortMovies(props.filterShortMovies);
+    }, [props.filterShortMovies])
     React.useEffect(() => {
-      handleSearchMovies();
-     }, [handleSearchMovies])
+        setMovies(props.movies);
+    }, []);
+    React.useEffect(() => {
+        window.addEventListener('resize', () => {
+            handleMoviesOnResizeScreen();
+        });
+        handleMoviesOnResizeScreen();
+        return () => {
+            window.removeEventListener('resize', () => {
+                handleMoviesOnResizeScreen();
+            });
+        }
+    }, [])
+    React.useEffect(() => {
+        setRenderMovies(handleLimitationMovies(movies));
+    }, [handleLimitationMovies, movies])
     return (
+      <>{props.nothingFound ? <p className="nothing-found">Ничего не найдено</p> :
         <ul className="movies">
         {renderingMovies.map((movie) => 
-          <MovieCard savedMovies={props.savedMovieButtons} buttonName={props.buttonName} moviesName={props.moviesName} movie={movie} onClick={props.onClickMovieButton} key={movie.id}></MovieCard>
+          <MovieCard savedMovies={props.savedMovies} buttonName={props.buttonName} moviesName={props.moviesName} movie={movie} onClick={props.onClickMovieButton} key={movie.id}></MovieCard>
           )}
         </ul>
-    )
+      }
+      </>
+)
 })
 
 export default MovieCardList;

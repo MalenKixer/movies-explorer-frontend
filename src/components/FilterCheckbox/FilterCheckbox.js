@@ -4,7 +4,8 @@ import React from 'react';
 const FilterCheckbox = React.memo((props) => {
     return (
             <label className='filter-checkbox'>
-                <input className='filter-checkbox__input' type="checkbox" name="genre" id='genre' onChange={() => props.handleFiterMovies(props.movies, props.moviesName)}/>
+                <input className='filter-checkbox__input' type="checkbox" name="genre" id='genre' checked={props.filterShortMovies ? true : false}
+                onChange={() => props.handleFiterMovies()}/>
                 <span className='filter-checkbox__slider'></span>Короткометражки
             </label>
     )
