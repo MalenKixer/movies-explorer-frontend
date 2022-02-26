@@ -2,6 +2,7 @@ import './Form.css';
 import React from 'react';
 import FormValidator from '../FormValidator/FormValidator';
 import { validationFormConfig } from '../../utils/const'
+import { useNavigate } from 'react-router-dom';
 
 const Form = React.memo((props) =>{
    const[errorMessage, setErrorMessage] = React.useState('');
@@ -10,20 +11,24 @@ const Form = React.memo((props) =>{
    const titleClassName = `${props.name}__title`;
    const buttonClassName = `${props.name}__button`;
    const formValidation = new FormValidator(validationFormConfig);
+   const history = useNavigate();
    React.useEffect(() => {
       formValidation.enableValidation();
    }, [])
    function handleSubmit(){
       props.onSubmit();
+      setErrorMessage(props.errorMessage);
    }
    React.useEffect(() => {
       setErrorMessage(props.errorMessage);
    }, [props.errorMessage])
    React.useEffect(() => {
-      setErrorMessage('');
-   }, [])
+      if(history){
+         setErrorMessage('');
+      }
+   }, [history])
     return(
-      <form className={`form ${formClassName}`} name={props.name} onSubmit={handleSubmit} noValidate>
+      <form className={`form ${formClassName}`} name={props.name} onSubmit={handleSubmit} noValidate >
          <h2 className={`form__title ${titleClassName}`}>{props.title}</h2>
          <fieldset className={`form__set ${fieldsetClassName}`}>
             {props.children}

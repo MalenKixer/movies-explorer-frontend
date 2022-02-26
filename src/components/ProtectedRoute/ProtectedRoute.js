@@ -4,7 +4,7 @@ import React from 'react';
 const ProtectedRoute = React.memo(({component: Component, ...props}) =>{
     return(
         <>
-        {props.loggedIn ? <Component {...props}/> : <Navigate to="/sign-in"/>}
+        {props.loggedIn ? <Component {...props}/> : <Navigate to="/"/>}
         </>
     )
 })

@@ -7,10 +7,16 @@ const { NavLink } = require('react-router-dom');
 
 const Profile = React.memo((props) =>{
     const curentUser = React.useContext(CurrentUserContext);
-    const[email, setEmail] = React.useState(curentUser.email);
-    const[name, setName] = React.useState(curentUser.name);
+    const[email, setEmail] = React.useState();
+    const[name, setName] = React.useState();
+    const [errorMessage, setErrorMessage] = React.useState('');
     function handleProfileSubmit(){
-        props.onSubmit(name, email);
+        if(name !== curentUser.name || email !== curentUser.email){
+            props.onSubmit(name, email);
+            setErrorMessage(props.errorMessage);
+        } else {
+            setErrorMessage('Введенные данные совпадают с исходными. Пожалуста измените их');
+        }
     }
     function onChangeName(evt){
         setName(evt.target.value);
@@ -18,11 +24,15 @@ const Profile = React.memo((props) =>{
     function onChangeEmail(evt){
         setEmail(evt.target.value);
     }
+    React.useEffect(() => {
+        setName(curentUser.name);
+        setEmail(curentUser.email);
+    }, [])
     return (
         <main className="content">
             <HeaderMovies openNavigation={props.openNavigation} isBarOpen={props.isBarOpen} closePopup={props.closePopup}></HeaderMovies>
             <section className="profile-form">
-                <Form name="profile-form" title={`Привет, ${curentUser.name} !`} button="Редактировать" onSubmit={handleProfileSubmit} errorMessage={props.errorMessage}>
+                <Form name="profile-form" title={`Привет, ${curentUser.name}!`} button="Редактировать" onSubmit={handleProfileSubmit} errorMessage={errorMessage}>
                     <label className='form__field profile-form__field'>Имя
                         <input className='form__input profile-form__input' type="text" name="user" required  id='name-user-input' minLength='2' placeholder='Имя' value={name} 
                         onChange={onChangeName}/>
