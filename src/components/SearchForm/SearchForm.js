@@ -22,7 +22,11 @@ const SearchForm = React.memo((props) =>{
     }, [movieName]);
     React.useEffect(() => {
         const filteredMovies = JSON.parse(localStorage.getItem('filter-movies'));
-        setMovieName(filteredMovies.searchWord);
+        if(typeof(filteredMovies) === 'object'){
+            setMovieName(filteredMovies.searchWord);
+          } else {
+            return
+          }
     }, [])
     return (
         <form className="search-form" name="search" onSubmit={onSubmit}>

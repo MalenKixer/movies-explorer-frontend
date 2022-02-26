@@ -270,7 +270,11 @@ const App = React.memo(() => {
   }, [])
   React.useEffect(() => {
     const filteredMovies = JSON.parse(localStorage.getItem('filter-movies'));
-    setFilterShortMovies(filteredMovies.checkbox)
+    if(typeof(filteredMovies) === 'object'){
+      setFilterShortMovies(filteredMovies.checkbox)
+    } else {
+      return
+    }
 }, [])
   React.useEffect(() => { 
   const closeByEscape = (evt) => { 
