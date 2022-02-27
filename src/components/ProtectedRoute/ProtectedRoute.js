@@ -5,6 +5,7 @@ const ProtectedRoute = React.memo(({component: Component, ...props}) =>{
     return(
         <>
         {props.loggedIn ? <Component {...props}/> : <Navigate to="/"/>}
+        {console.log(props.loggedIn)}
         </>
     )
 })

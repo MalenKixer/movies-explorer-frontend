@@ -258,10 +258,10 @@ const App = React.memo(() => {
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
-      setMessageFail(err.message);
-      setFail(true);
-      handleInfoTooltipPopupOpen();
     })
+  }, [])
+  React.useEffect(() => {
+      console.log(loggedIn);
   }, [])
   React.useEffect(() => {
       handleGetUserInfo();
