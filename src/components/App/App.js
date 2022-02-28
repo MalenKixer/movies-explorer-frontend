@@ -261,7 +261,9 @@ const App = React.memo(() => {
     })
   }, [])
   React.useEffect(() => {
-      console.log(loggedIn);
+      window.addEventListener('popstate', (evt) => {
+        evt.preventDefault();
+      })
   }, [])
   React.useEffect(() => {
       handleGetUserInfo();
@@ -270,7 +272,7 @@ const App = React.memo(() => {
   }, [])
   React.useEffect(() => {
     const filteredMovies = JSON.parse(localStorage.getItem('filter-movies'));
-    if(typeof(filteredMovies) === 'object'){
+    if(filteredMovies !== null){
       setFilterShortMovies(filteredMovies.checkbox)
     } else {
       return

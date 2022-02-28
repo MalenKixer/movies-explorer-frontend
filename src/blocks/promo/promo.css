@@ -7,13 +7,13 @@
     padding: 0 70px;
 }
 @media screen and (max-width: 768px) {
-    .promo__container{
+    .promo{
         padding: 0 30px;
     }
 }
 
 @media screen and (max-width: 320px) {
-    .promo__container{
+    .promo{
         padding: 0 10px;
     }
 }
