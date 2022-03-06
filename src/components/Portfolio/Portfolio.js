@@ -1,21 +1,20 @@
 import './Portfolio.css';
 import React from 'react';
 
-const { NavLink } = require('react-router-dom');
 const Portfolio = React.memo((props) =>{
     return (
         <section className="portfolio">
             <h2 className="portfolio__title">Портфолио</h2>
             <div className="portfolio__links">
-                <NavLink className="portfolio__link" activeclassname="portfolio__link_active" target='_blank' to=''>
+                <a className="portfolio__link" activeclassname="portfolio__link_active" rel="noreferrer" target='_blank' href='https://MalenKixer.github.io/russian-travel/index.html'>
                     Статичный сайт <div className="portfolio__link-icon"></div>
-                </NavLink>
-                <NavLink className="portfolio__link" activeclassname="portfolio__link_active" target='_blank' to=''>
+                </a>
+                <a className="portfolio__link" activeclassname="portfolio__link_active" rel="noreferrer" target='_blank' href='https://malenkixer.github.io/mesto'>
                     Адаптивный сайт <div className="portfolio__link-icon"></div>
-                </NavLink>
-                <NavLink className="portfolio__link" activeclassname="portfolio__link_active" target='_blank' to=''>
+                </a>
+                <a className="portfolio__link" activeclassname="portfolio__link_active" rel="noreferrer" target='_blank' href='https://domainame.alexander.nomoredomains.rocks'>
                     Одностраничное приложение <div className="portfolio__link-icon"></div>
-                </NavLink>
+                </a>
             </div>
         </section>  
     )

@@ -10,8 +10,9 @@ const Movies = React.memo((props) =>{
     return (
         <main className="content">
             <HeaderMovies openNavigation={props.openNavigation} isBarOpen={props.isBarOpen} closePopup={props.closePopup}></HeaderMovies>
-            <SearchForm handleFiterMovies={props.handleFiterMovies} onSubmit={props.onSubmitSearch} filterShortMovies={props.filterShortMovies} moviesName={props.moviesName}></SearchForm>
-            <MovieCardList savedMovies={props.savedMovies}  nothingFound={props.nothingFound} 
+            <SearchForm setFilterShortMovies={props.setFilterShortMovies}
+             onSubmit={props.onSubmitSearch} filterShortMovies={props.filterShortMovies} moviesName={props.moviesName} setRememberedMovies={props.setRememberedMovies}></SearchForm>
+            <MovieCardList savedAllMovies={props.savedAllMovies} 
              filterShortMovies={props.filterShortMovies} addMoreMovies={props.addMoreMovies}
              handleStopMoreMovies={props.handleStopMoreMovies} handleAddButtonMore={props.handleAddButtonMore} 
              handleDeleteButtonMore={props.handleDeleteButtonMore} onClickMovieButton={props.onClickMovieButton} buttonName="Сохранить" movies={props.movies}

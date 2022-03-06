@@ -6,8 +6,8 @@ const MovieCard = React.memo((props) =>{
     const [isSavedMovie, setSavedMovie] = React.useState(false); 
     const [movie, setMovie] = React.useState({});
     React.useEffect(() => {
-        const savedMovies = props.savedMovies;
-        setSavedMovie(savedMovies.some(movie => {
+        const savedAllMovies = props.savedAllMovies;
+        setSavedMovie(savedAllMovies.some(movie => {
             if(movie.id === props.movie.id ){
                 setMovie(movie);
                 return true;
@@ -18,7 +18,7 @@ const MovieCard = React.memo((props) =>{
         if(!isSavedMovie) {
             setMovie(props.movie);
         } 
-    }, [props.movie, props.savedMovies, isSavedMovie]);
+    }, [props.movie, props.savedAllMovies, isSavedMovie]);
     return (
         <li className="movie">
             <div className="movie__description">

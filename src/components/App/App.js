@@ -39,7 +39,6 @@ const App = React.memo(() => {
   const[isPreloaderOpen, setPreloaderOpen] = React.useState(false);
   const[filterShortMovies, setFilterShortMovies] = React.useState(false);
   const[isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = React.useState(false);
-  const[nothingFound, setNothingFound] = React.useState(false);
   const history = useNavigate();
   function openNavigation() {
       setBarOpen(true);
@@ -101,8 +100,11 @@ const App = React.memo(() => {
       setLoggedIn(false);
       history(`/`);
       localStorage.setItem('filter-movies', JSON.stringify({
-        searchWord: '',
-        checkbox: '',
+        checkbox: false,
+        movies: [],
+      }))
+      localStorage.setItem('search-word', JSON.stringify({
+        searchWord: ''
       }))
     })
     .catch((err) => {
@@ -143,8 +145,8 @@ const App = React.memo(() => {
   }
   function handleGetMovies(){
     apiMovies.getMovies()
-    .then((movie) => {
-      setAllMovies(movie.map((movie) => {
+    .then((movies) => {
+      setAllMovies(movies.map((movie) => {
         movie.image = movie.image.url;
         return movie;
       }));
@@ -160,7 +162,6 @@ const App = React.memo(() => {
     api.getMovieList()
     .then((savedMovies) => {
       setSavedAllMovies(savedMovies);
-      setSavedMovies(savedMovies);
      })
     .catch((err) => {
       console.log(`Ошибка: ${err.message}`);
@@ -173,7 +174,8 @@ const App = React.memo(() => {
     setPreloaderOpen(true);
     api.deleteMovie(movie)
     .then((res) => {
-      setSavedMovies(savedMovies.filter(savedMovie => savedMovie.id !== res.id));
+      setSavedAllMovies(savedAllMovies.filter(savedMovie => savedMovie.id !== res.id));
+      setSavedMovies(savedMovies.filter(savedMovie => savedMovie.id !== res.id))
     })
     .catch((err) => {
       console.log(`Ошибка: ${err.message}`);
@@ -189,7 +191,8 @@ const App = React.memo(() => {
     setPreloaderOpen(true);
     api.savedMovie(movie)
     .then((res) => {
-      setSavedMovies([...savedMovies, res]);
+      setSavedAllMovies([...savedAllMovies, res]);
+      setSavedMovies([...savedMovies, res])
     })
     .catch((err) => {
       console.log(`Ошибка: ${err.message}`);
@@ -208,36 +211,18 @@ const App = React.memo(() => {
         handleSaveMovie(movie);
       }
   }
-  function handleFiterMovies(){
-    if(filterShortMovies){
-      setFilterShortMovies(false);
-    } else {
-      setFilterShortMovies(true);
-    }
-  }
   function handleSearchMovies(searchWord, moviesName){
       setPreloaderOpen(true);
-      setNothingFound(false);
-      if(searchWord !== ''){
-        const movies = moviesName === 'movies' ? allMovies : savedAllMovies;
-        const filterMovies = movies.filter(movie => movie.nameRU.includes(searchWord.toLowerCase()));
-        if(filterMovies.length > 0){
-          if(moviesName === 'movies'){
-            setMovies(filterMovies);
-          } 
-          if(moviesName === 'saved-movies'){
-            setSavedMovies(filterMovies);
-          }
+      const movies = moviesName === 'movies' ? allMovies : savedAllMovies;
+      const searchMovies = movies.filter(movie => movie.nameRU.toLowerCase().includes(searchWord.toLowerCase()));
+      if(moviesName === 'movies'){
+          setMovies(searchMovies);
           setPreloaderOpen(false);
-          localStorage.setItem('filter-movies', JSON.stringify({
-            searchWord: searchWord,
-            checkbox: filterShortMovies,
-          }))
-        } else {
-          setNothingFound(true);
+        } 
+        if(moviesName === 'saved-movies'){
+          setSavedMovies(searchMovies);
           setPreloaderOpen(false);
         }
-      }
   }
   function handleAddMoreMovies(){
     setMoreMovies(true);
@@ -251,6 +236,15 @@ const App = React.memo(() => {
   function handleDeleteButtonMore(){
     setAddButtonMore(false);
   }
+  function setRememberedMovies(movies){
+    setMovies(movies)
+  }
+  function setShortMovies(value){
+    setFilterShortMovies(value)
+  }
+  function setSavedMoviesAll(){
+    setSavedMovies(savedAllMovies);
+  }
   React.useEffect(() => {
     api.checkToken()
     .then(() => {
@@ -261,23 +255,10 @@ const App = React.memo(() => {
     })
   }, [])
   React.useEffect(() => {
-      window.addEventListener('popstate', (evt) => {
-        evt.preventDefault();
-      })
-  }, [])
-  React.useEffect(() => {
       handleGetUserInfo();
       handleGetSavedMovies();
       handleGetMovies();
   }, [])
-  React.useEffect(() => {
-    const filteredMovies = JSON.parse(localStorage.getItem('filter-movies'));
-    if(filteredMovies !== null){
-      setFilterShortMovies(filteredMovies.checkbox)
-    } else {
-      return
-    }
-}, [])
   React.useEffect(() => { 
   const closeByEscape = (evt) => { 
     if (evt.key === 'Escape') { 
@@ -313,16 +294,16 @@ const App = React.memo(() => {
               <Main loggedIn={loggedIn} openNavigation={openNavigation} isBarOpen={isBarOpen} closePopup={handleCloseAllPopupsClick}></Main>
           }/>
           <Route path={`/movies`} element={ 
-              <ProtectedRoute movies={movies} nothingFound={nothingFound} savedMovies={savedMovies} moviesName='movies'  
-              filterShortMovies={filterShortMovies} handleFiterMovies={handleFiterMovies} addMoreMovies={addMoreMovies}
+              <ProtectedRoute movies={movies} setFilterShortMovies={setShortMovies} setRememberedMovies={setRememberedMovies} savedAllMovies={savedAllMovies} savedMovies={savedMovies} moviesName='movies'  
+              filterShortMovies={filterShortMovies} addMoreMovies={addMoreMovies}
               handleStopMoreMovies={handleStopMoreMovies} handleAddButtonMore={handleAddButtonMore} handleDeleteButtonMore={handleDeleteButtonMore} 
               onClickButtonMore={handleAddMoreMovies} addButtonMore={addButtonMore} onClickMovieButton={handleClickMovieButton} onSubmitSearch={handleSearchMovies} 
               loggedIn={loggedIn} component={Movies} openNavigation={openNavigation} isBarOpen={isBarOpen} closePopup={handleCloseAllPopupsClick}>
                </ProtectedRoute>
           }/>
           <Route path={`/saved-movies`} element={ 
-              <ProtectedRoute movies={savedMovies} nothingFound={nothingFound} savedMovies={savedMovies} moviesName='saved-movies' 
-              filterShortMovies={filterShortMovies} handleFiterMovies={handleFiterMovies} addMoreMovies={addMoreMovies} 
+              <ProtectedRoute movies={savedMovies} setFilterShortMovies={setShortMovies} setSavedMoviesAll={setSavedMoviesAll} savedMovies={savedMovies} savedAllMovies={savedAllMovies} moviesName='saved-movies' 
+              filterShortMovies={filterShortMovies} addMoreMovies={addMoreMovies} 
               handleStopMoreMovies={handleStopMoreMovies} handleAddButtonMore={handleAddButtonMore} handleDeleteButtonMore={handleDeleteButtonMore} 
               onClickButtonMore={handleAddMoreMovies} addButtonMore={addButtonMore} onClickMovieButton={handleClickMovieButton} onSubmitSearch={handleSearchMovies}
               loggedIn={loggedIn} component={SavedMovies} openNavigation={openNavigation} isBarOpen={isBarOpen}closePopup={handleCloseAllPopupsClick}>

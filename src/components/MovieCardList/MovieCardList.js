@@ -13,9 +13,8 @@ const MovieCardList = React.memo((props) =>{
     const [quantityOfAddMovies, setQuantityOfAddMovies] = React.useState(0);
     const [moviesMaxLength, setMoviesMaxLength] = React.useState(0);
     const [renderingMovies, setRenderMovies] = React.useState([])
-    const [filterShortMovies, setFilterShortMovies] = React.useState(false);
     const [movies, setMovies] = React.useState([]);
-    const [filterMovies, setFilterMovies] = React.useState([]);
+    const [nothingFound, setNothingFound] = React.useState(false);
     const pushMoreMovies = useCallback((movies, renderingMovies) => {
       renderingMovies.push(movies.slice(moviesMaxLength, moviesMaxLength + quantityOfAddMovies));
       setMoviesMaxLength(moviesMaxLength + quantityOfAddMovies);
@@ -31,7 +30,7 @@ const MovieCardList = React.memo((props) =>{
         } else {
           return renderingMovies;
         }
-      }
+      } 
       if(movies.length <= moviesMaxLength || !movies){
         handleDeleteButtonMore();
         return movies;
@@ -58,21 +57,40 @@ const MovieCardList = React.memo((props) =>{
       }
     }, [])
     React.useEffect(() => {
-      if (filterShortMovies){
-        setFilterMovies(props.movies.filter(movie => movie.duration <= ShortMoviesDuration));
-      } else {
-        setFilterMovies(props.movies);
+        if(props.moviesName === 'movies'){
+          localStorage.setItem('filter-movies', JSON.stringify({
+            movies: props.movies,
+            checkbox: props.filterShortMovies,
+          }));
+        } 
+        if(props.movies.length === 0){
+          setNothingFound(true);
+        } else {
+          setNothingFound(false)
+        }
+        if(props.filterShortMovies){
+          const filterMovies = props.movies.filter(movie => movie.duration <= ShortMoviesDuration);
+          if(filterMovies.length === 0){
+            setNothingFound(true);
+            localStorage.setItem('filter-movies', JSON.stringify({
+              movies: [],
+              checkbox: props.filterShortMovies,
+            }));
+          } else {
+            setMovies(filterMovies);
+          }
+        } else {
+          setMovies(props.movies);
+        }
+}, [props.filterShortMovies, props.movies, props.moviesName])
+    React.useEffect(() => {
+      if(props.moviesName === 'saved-movies'){
+        setMovies(props.savedAllMovies);
       }
-    }, [filterShortMovies, props.movies])
+    }, [props.moviesName]);
     React.useEffect(() => {
-      setMovies(filterMovies);
-    }, [filterMovies])
-    React.useEffect(() => {
-      setFilterShortMovies(props.filterShortMovies);
-    }, [props.filterShortMovies])
-    React.useEffect(() => {
-        setMovies(props.movies);
-    }, []);
+      setNothingFound(false);
+    }, [])
     React.useEffect(() => {
         window.addEventListener('resize', () => {
             handleMoviesOnResizeScreen();
@@ -88,10 +106,11 @@ const MovieCardList = React.memo((props) =>{
         setRenderMovies(handleLimitationMovies(movies));
     }, [handleLimitationMovies, movies])
     return (
-      <>{props.nothingFound ? <p className="nothing-found">Ничего не найдено</p> :
+      <>{nothingFound ? <p className="nothing-found">Ничего не найдено</p> :
         <ul className="movies">
         {renderingMovies.map((movie) => 
-          <MovieCard savedMovies={props.savedMovies} buttonName={props.buttonName} moviesName={props.moviesName} movie={movie} onClick={props.onClickMovieButton} key={movie.id}></MovieCard>
+          <MovieCard savedAllMovies={props.savedAllMovies} buttonName={props.buttonName} moviesName={props.moviesName} movie={movie} 
+           onClick={props.onClickMovieButton} key={movie.id}></MovieCard>
           )}
         </ul>
       }

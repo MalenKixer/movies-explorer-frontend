@@ -4,29 +4,30 @@ import './SearchForm.css';
 
 const SearchForm = React.memo((props) =>{
     const[movieName, setMovieName] = React.useState('');
-    const[filterShortMovies, setFilterShortMovies] = React.useState(false);
+    const filterMovies = JSON.parse(localStorage.getItem('filter-movies'));
+    const searchWord = JSON.parse(localStorage.getItem('search-word'));
     function onSubmit(evt){
         evt.preventDefault();
         props.onSubmit(movieName, props.moviesName);
+        if(props.moviesName === 'movies'){
+            localStorage.setItem('search-word', JSON.stringify({
+                searchWord: movieName,
+            }))
+        }
     }
     function onChange(evt){
         setMovieName(evt.target.value);
     }
     React.useEffect(() => {
-        setFilterShortMovies(props.filterShortMovies);
-    }, [props.filterShortMovies, setFilterShortMovies])
-    React.useEffect(() => {
-        if(movieName !== ''){
-            props.onSubmit(movieName, props.moviesName);
-        }
-    }, [movieName]);
-    React.useEffect(() => {
-        const filteredMovies = JSON.parse(localStorage.getItem('filter-movies'));
-        if(filteredMovies !== null){
-            setMovieName(filteredMovies.searchWord);
-          } else {
-            return
+        if(filterMovies !== null && searchWord !== null && props.moviesName === 'movies'){
+            setMovieName(searchWord.searchWord);
+            props.setRememberedMovies(filterMovies.movies);
+            props.setFilterShortMovies(filterMovies.checkbox);
           }
+        if(props.moviesName === 'saved-movies'){
+            setMovieName('');
+            props.setFilterShortMovies(false);
+        }
     }, [])
     return (
         <form className="search-form" name="search" onSubmit={onSubmit}>
@@ -37,7 +38,7 @@ const SearchForm = React.memo((props) =>{
                 <span className='search-form__input-error name-search-input-error'></span>
                 <button className='search-form__icon search-form__button' type='submit' onSubmit=''></button>
             </label>
-            <FilterCheckbox moviesName={props.moviesName} handleFiterMovies={props.handleFiterMovies} filterShortMovies={filterShortMovies}></FilterCheckbox>
+            <FilterCheckbox moviesName={props.moviesName} setFilterShortMovies={props.setFilterShortMovies} filterShortMovies={props.filterShortMovies}></FilterCheckbox>
         </form>  
     )
 })
