@@ -72,10 +72,12 @@ const MovieCardList = React.memo((props) =>{
           const filterMovies = props.movies.filter(movie => movie.duration <= ShortMoviesDuration);
           if(filterMovies.length === 0){
             setNothingFound(true);
+            if(props.moviesName === 'movies'){
             localStorage.setItem('filter-movies', JSON.stringify({
               movies: [],
               checkbox: props.filterShortMovies,
             }));
+            }
           } else {
             setMovies(filterMovies);
           }
