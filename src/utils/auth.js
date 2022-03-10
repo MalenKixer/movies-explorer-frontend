@@ -20,7 +20,8 @@ export const register = (name, email, password) =>{
             "Accept": 'application/json',
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({name, email, password})
+        body: JSON.stringify({name, email, password}),
+        credentials: 'include',
     })
 }
 //Авторизовать пользователя, если он входит первый раз или после выхода, вернуть token пользователя

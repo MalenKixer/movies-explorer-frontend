@@ -34,7 +34,7 @@ const Form = React.memo((props) =>{
             {props.children}
          </fieldset>
          <span className={`form__input-error form__submit-error ${errorMessage !== '' && 'form__input-error_active'}`}>{errorMessage}</span>
-         <button className={`form__button ${buttonClassName}`} type="submit" name="submit" >{props.button}</button>
+         <button className={`form__button ${buttonClassName}`} type="submit" name="submit">{props.button}</button>
       </form>
     )
 })

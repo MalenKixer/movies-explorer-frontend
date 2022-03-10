@@ -63,36 +63,18 @@ const MovieCardList = React.memo((props) =>{
             checkbox: props.filterShortMovies,
           }));
         } 
-        if(props.movies.length === 0){
-          setNothingFound(true);
-        } else {
-          setNothingFound(false)
-        }
         if(props.filterShortMovies){
           const filterMovies = props.movies.filter(movie => movie.duration <= ShortMoviesDuration);
-          if(filterMovies.length === 0){
-            setNothingFound(true);
-            if(props.moviesName === 'movies'){
-            localStorage.setItem('filter-movies', JSON.stringify({
-              movies: [],
-              checkbox: props.filterShortMovies,
-            }));
-            }
-          } else {
             setMovies(filterMovies);
-          }
         } else {
-          setMovies(props.movies);
+            setMovies(props.movies);
         }
-}, [props.filterShortMovies, props.movies, props.moviesName])
+}, [props.filterShortMovies, props.movies, props.moviesName, props.nothingFound])
     React.useEffect(() => {
       if(props.moviesName === 'saved-movies'){
         setMovies(props.savedAllMovies);
       }
-    }, [props.moviesName]);
-    React.useEffect(() => {
-      setNothingFound(false);
-    }, [])
+    }, []);
     React.useEffect(() => {
         window.addEventListener('resize', () => {
             handleMoviesOnResizeScreen();
@@ -105,10 +87,18 @@ const MovieCardList = React.memo((props) =>{
         }
     }, [])
     React.useEffect(() => {
+      const searchWord = JSON.parse(localStorage.getItem('search-word'));
+      if(renderingMovies.length === 0 && searchWord.searchWord === ''){
+        setNothingFound(false);
+      } else {
+        setNothingFound(true)
+      }
+    }, [renderingMovies])
+    React.useEffect(() => {
         setRenderMovies(handleLimitationMovies(movies));
     }, [handleLimitationMovies, movies])
     return (
-      <>{nothingFound ? <p className="nothing-found">Ничего не найдено</p> :
+      <>{(renderingMovies.length === 0 && nothingFound) ? <p className="nothing-found">Ничего не найдено</p> :
         <ul className="movies">
         {renderingMovies.map((movie) => 
           <MovieCard savedAllMovies={props.savedAllMovies} buttonName={props.buttonName} moviesName={props.moviesName} movie={movie} 

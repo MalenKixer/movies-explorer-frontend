@@ -7,15 +7,15 @@ const { NavLink } = require('react-router-dom');
 
 const Profile = React.memo((props) =>{
     const curentUser = React.useContext(CurrentUserContext);
-    const[email, setEmail] = React.useState();
-    const[name, setName] = React.useState();
+    const[email, setEmail] = React.useState(curentUser.email);
+    const[name, setName] = React.useState(curentUser.name);
     const [errorMessage, setErrorMessage] = React.useState('');
     function handleProfileSubmit(){
         if(name !== curentUser.name || email !== curentUser.email){
             props.onSubmit(name, email);
             setErrorMessage(props.errorMessage);
         } else {
-            setErrorMessage('Введенные данные совпадают с исходными. Пожалуста измените их');
+            setErrorMessage('Введенные данные совпадают с исходными. Пожалуйста, измените их');
         }
     }
     function onChangeName(evt){
@@ -24,10 +24,6 @@ const Profile = React.memo((props) =>{
     function onChangeEmail(evt){
         setEmail(evt.target.value);
     }
-    React.useEffect(() => {
-        setName(curentUser.name);
-        setEmail(curentUser.email);
-    }, [])
     return (
         <main className="content">
             <HeaderMovies openNavigation={props.openNavigation} isBarOpen={props.isBarOpen} closePopup={props.closePopup}></HeaderMovies>
