@@ -2,8 +2,7 @@ import './MovieCardList.css';
 import React, { useCallback } from "react";
 import MovieCard from '../MovieCard/MovieCard';
 
-import { ShortMoviesDuration, LengthMoviesForMaxWidth, LengthMoviesForMiddleWidth, 
-  LengthMoviesForMinWidth, QuantityOfAddMoviesForMaxWidth, QuantityOfAddMoviesForMiddleWidth, QuantityOfAddMoviesForMinWidth } from '../../utils/const';
+import { ShortMoviesDuration, LengthMoviesWidth, QuantityOfAddMovies } from '../../utils/const';
 
 const MovieCardList = React.memo((props) =>{
     const handleStopMoreMovies = props.handleStopMoreMovies;
@@ -38,21 +37,21 @@ const MovieCardList = React.memo((props) =>{
     }, [moviesMaxLength, pushMoreMovies, handleAddButtonMore, addMoreMovies, handleDeleteButtonMore])
     const handleMoviesOnResizeScreen = useCallback(() => {
       if(window.innerWidth >= 768){
-        if(moviesMaxLength < LengthMoviesForMaxWidth){
-          setMoviesMaxLength(LengthMoviesForMaxWidth);
-          setQuantityOfAddMovies(QuantityOfAddMoviesForMaxWidth);
+        if(moviesMaxLength < LengthMoviesWidth.maxWidth){
+          setMoviesMaxLength(LengthMoviesWidth.maxWidth);
+          setQuantityOfAddMovies(QuantityOfAddMovies.forMaxWidth);
         }
       }
       if(window.innerWidth < 768 && window.innerWidth > 480){
-        if(moviesMaxLength < LengthMoviesForMiddleWidth){
-          setMoviesMaxLength(LengthMoviesForMiddleWidth);
-          setQuantityOfAddMovies(QuantityOfAddMoviesForMiddleWidth);
+        if(moviesMaxLength < LengthMoviesWidth.middleWidth){
+          setMoviesMaxLength(LengthMoviesWidth.middleWidth);
+          setQuantityOfAddMovies(QuantityOfAddMovies.forMiddleWidth);
         }
       }
       if(window.innerWidth <= 480){
-        if(moviesMaxLength < LengthMoviesForMinWidth){
-          setMoviesMaxLength(LengthMoviesForMinWidth);
-          setQuantityOfAddMovies(QuantityOfAddMoviesForMinWidth);
+        if(moviesMaxLength < LengthMoviesWidth.minWidth){
+          setMoviesMaxLength(LengthMoviesWidth.minWidth);
+          setQuantityOfAddMovies(QuantityOfAddMovies.forMinWidth);
         }
       }
     }, [])
@@ -64,8 +63,7 @@ const MovieCardList = React.memo((props) =>{
           }));
         } 
         if(props.filterShortMovies){
-          const filterMovies = props.movies.filter(movie => movie.duration <= ShortMoviesDuration);
-            setMovies(filterMovies);
+            setMovies(props.movies.filter(movie => movie.duration <= ShortMoviesDuration));
         } else {
             setMovies(props.movies);
         }

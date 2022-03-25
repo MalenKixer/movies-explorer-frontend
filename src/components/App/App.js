@@ -71,8 +71,6 @@ const App = React.memo(() => {
         setMessageSucces('Вы успешно зарегистрировались!');
         setFail(false);
         handleInfoTooltipPopupOpen();
-      })
-      .then(() => {
         history(`/movies`);
       })
     .catch((err) => {
@@ -93,9 +91,6 @@ const App = React.memo(() => {
         setLoggedIn(true)   
         history(`/movies`);
         console.log(tok);
-      })
-      .then(() => {
-        history(`/profile`);
       })
     .catch((err) => {
       setErrorMessage(err.message);
