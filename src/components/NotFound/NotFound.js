@@ -1,16 +1,14 @@
 import './NotFound.css';
-import React from 'react';
-const { useNavigate } = require('react-router-dom');
-
-const NotFound = React.memo((props) =>{
+import { useNavigate } from 'react-router-dom'
+function NotFound(props){
    const navigate = useNavigate();
    return(
-      <section className='not-found'>
+      <div className='not-found'>
          <h1 className='not-found__title'>404</h1>
          <p className='not-found__subtitle'>Страница не найдена</p>
          <button className='not-found__link' onClick={() => navigate(-1)}>Назад</button>
-      </section>
+      </div>
    )
-})
+}
 
 export default NotFound;

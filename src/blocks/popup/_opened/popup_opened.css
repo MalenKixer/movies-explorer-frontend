@@ -7,11 +7,6 @@
    }
 }
 .popup_opened{
-   display: none;
-}
-@media screen and (max-width: 768px) {
-   .popup_opened{
       display: flex;
       animation: displayPopup .3s ease-in-out;
    }
-}

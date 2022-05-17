@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import React from 'react';
 import Navigation from '../Navigation/Navigation';
 
-const HeaderMovies = React.memo((props) =>{
+const HeaderLoggedIn = React.memo((props) =>{
     return (
         <Header>
             <nav className="header__nav" id='bar-nav'>
@@ -21,4 +21,4 @@ const HeaderMovies = React.memo((props) =>{
     );
 })
 
-export default HeaderMovies;
+export default HeaderLoggedIn;

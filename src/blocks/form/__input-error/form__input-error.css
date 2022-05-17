@@ -1,5 +1,11 @@
 .form__input-error{
-    display: none;
     width: 100%;
-    color: #EE3465;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    margin-top: 10px;
+    display: none;
+    color: #FF004C;
 }

@@ -7,7 +7,7 @@
         height: 44px;
         display: block;
         border: 0;
-        background-color: #202020;
+        background-color: inherit;
         background-image: url(../../../images/bar.svg);
         background-repeat: no-repeat;
         background-position: center;
