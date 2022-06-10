@@ -1,0 +1,2 @@
+export const SET_MOVIE = "MOVIE/SET_MOVIE";
+export const IS_SAVED_MOVIE = 'MOVIE/IS_SAVED_MOVIE'

@@ -1,23 +1,12 @@
+import { request } from "../Auth/utilsFunctions/request";
+import { BASE_URL } from "../const";
+
 export class Api{
     constructor({baseUrl, headers}){
         this._headers = headers;
         this._baseUrl = baseUrl;
-
+        this._sendRequest = request(this._baseUrl);
     }
-    // Оправить запрос
-    _sendRequest(path, parameters){
-        return fetch(`${this._baseUrl}${path}`, parameters)
-        .then((res) => {
-            return res.json();
-        })
-        .then((res) => {
-            if(res.name === 'error' || res.error !== undefined) {
-                return Promise.reject(new Error(res.message));
-            } else {
-                return res;
-            }
-        })
-    } 
     getUserInfo(){
         return this._sendRequest(`/users/me/`, {
             headers: this._headers,
@@ -92,7 +81,7 @@ export class Api{
 }
 
 export const api = new Api({
-    baseUrl: 'https://api.domainame.movies.nomoredomains.rocks',
+    baseUrl: BASE_URL,
     headers: {
        "Accept": 'application/json',
        'Content-Type': 'application/json',

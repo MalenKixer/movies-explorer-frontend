@@ -1,0 +1,2 @@
+export const MESSAGE = 'MESSAGE/MESSAGE'
+export const MESSAGE_ERROR = 'MESSAGE/MESSAGE_ERROR';

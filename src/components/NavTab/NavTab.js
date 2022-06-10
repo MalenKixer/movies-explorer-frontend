@@ -1,14 +1,20 @@
-import './NavTab.css';
-import React from 'react';
+import "./NavTab.css";
+import React from "react";
 
-const NavTab = React.memo((props) =>{
-   return(
-        <ul className="nav-tab">
-               <a className="nav-tab__link" href="#about-project" >О проекте</a>
-               <a className="nav-tab__link" href="#techs">Технологии</a>
-               <a className="nav-tab__link" href="#about-me">Студент</a>
-        </ul>
-    )
-})
+const NavTab = React.memo(() => {
+  return (
+    <ul className="nav-tab">
+      <a className="nav-tab__link" href="#about-project">
+        О проекте
+      </a>
+      <a className="nav-tab__link" href="#techs">
+        Технологии
+      </a>
+      <a className="nav-tab__link" href="#about-me">
+        Студент
+      </a>
+    </ul>
+  );
+});
 
 export default NavTab;
